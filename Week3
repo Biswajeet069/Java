@@ -1,0 +1,84 @@
+import java.util.*;
+
+class Book {
+    String name;
+    String author;
+    int price;
+    int num_pages;
+
+    
+    Book(String name, String author, int price, int num_pages) {
+        this.name = name;
+        this.author = author;
+        this.price = price;
+        this.num_pages = num_pages;
+    }
+
+    
+    public String toString() {
+        return "Name: " + name + ", Author: " + author + ", Price: " + price + ", No of Pages: " + num_pages;
+    }
+}
+
+class BookDetails {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("Enter number of books:");
+        int n = sc.nextInt();
+        sc.nextLine();  
+
+        Book[] book = new Book[n];
+
+        
+        System.out.println("Enter name, author, price and number of pages for each book respectively:");
+        for (int i = 0; i < n; i++) {
+            System.out.println("Enter details of book " + (i + 1) + ":");
+
+            
+            System.out.print("Name: ");
+            String name = sc.nextLine();
+
+            System.out.print("Author: ");
+            String author = sc.nextLine();
+
+            System.out.print("Price: ");
+            int price = sc.nextInt();
+
+            System.out.print("Number of Pages: ");
+            int num_pages = sc.nextInt();
+            sc.nextLine(); 
+
+            
+            book[i] = new Book(name, author, price, num_pages);
+        }
+
+       
+        for (int i = 0; i < n; i++) {
+            System.out.println("\nBook " + (i + 1) + ":");
+            System.out.println(book[i].toString());
+        }
+        
+        sc.close(); 
+    }
+}
+
+o/p
+
+Enter number of books:
+2
+Enter name, author, price and number of pages for each book respectively:
+Enter details of book 1:
+Name: Java Programming
+Author: James Gosling
+Price: 500
+Number of Pages: 300
+Enter details of book 2:
+Name: Data Structures
+Author: Robert Lafore
+Price: 400
+Number of Pages: 450
+Book 1:
+Name: Java Programming, Author: James Gosling, Price: 500, No of Pages: 300
+Book 2:
+Name: Data Structures, Author: Robert Lafore, Price: 400, No of Pages: 450
