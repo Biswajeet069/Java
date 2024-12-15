@@ -1,0 +1,50 @@
+import java.util.*;
+
+class Quadratic {
+    public static void main(String args[]) {
+        double a, b, c;  // Use double for better precision
+        Scanner s = new Scanner(System.in);
+        
+        System.out.println("Enter a, b, c:");
+        a = s.nextDouble();
+        b = s.nextDouble();
+        c = s.nextDouble();
+        
+        if (a == 0) {
+            System.out.println("Not quadratic");
+        } else {
+            double d = b * b - 4 * a * c;  // Discriminant calculation
+            if (d == 0) {
+                double r = -b / (2 * a);
+                System.out.println("Equal roots. r1 = r2 = " + r);
+            } else if (d > 0) {
+                double r1 = (-b + Math.sqrt(d)) / (2 * a);
+                double r2 = (-b - Math.sqrt(d)) / (2 * a);
+                System.out.println("r1 = " + r1 + " r2 = " + r2);
+            } else {
+                System.out.println("Roots are imaginary");
+            }
+        }
+        
+    }
+}
+
+o/p
+
+Enter a, b, c:
+1
+2 
+1
+Equal roots. r1 = r2 = -1.0
+
+Enter a, b, c:
+1 
+-7
+12
+r1 = 6.0 r2 = 2.0
+
+Enter a, b, c:
+1 
+2
+5
+Roots are imaginary
