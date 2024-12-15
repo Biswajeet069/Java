@@ -1,0 +1,99 @@
+class Account{
+    String cname;
+    int accno;
+    String acctype;
+    double balance;
+    Account(String cName,int accNo,String accType,double initialbalance){
+        cname=cName;
+        accno=accNo;
+        acctype=accType;
+        balance=initialbalance;
+    }
+    void deposit(double amount){
+        if(amount>0){
+            balance+=amount;
+            System.out.println("Deposited:"+amount);
+        }
+        else{
+            System.out.println("Invalid Deposit");
+        }
+    }
+    void displayBalance(){
+        System.out.println("Current Balance:"+balance);
+    }
+}
+
+class SavAcct extends Account{
+    final double ir=0.05;
+    SavAcct(String cName,int accNo,double initialbalance){
+        super( cName, accNo,"Savings",initialbalance);
+    }
+    void getInterest(){
+        double interest=balance*ir;
+        balance+=interest;
+        System.out.println("Interest added:"+interest);
+    }
+    void withdraw(double amount){
+        if(amount>balance){
+            System.out.println("Not enough balance");
+        }
+        else{
+            balance-=amount;
+            System.out.println("Withdrawn:"+amount);
+        }
+    }
+}
+
+class CurAcct extends Account{
+    final double minbalance=500.0;
+    final double serviceCharge=50.0;
+    CurAcct(String cName,int accNo,double initialbalance){
+        super( cName, accNo,"Current",initialbalance);
+    }
+    void checkMinimumBalance(){
+        if(balance<minbalance){
+            balance-=serviceCharge;
+            System.out.println("Service charge imposed:"+serviceCharge);
+        }
+    }
+    void withdraw(double amount){
+        if(amount>balance){
+            System.out.println("Insuffecient balance");
+        }
+        else{
+            balance-=amount;
+            checkMinimumBalance();
+            System.out.println("Amount withdrawn:"+amount);
+        }
+    }
+}
+
+public class Bank{
+    public static void main(String args[]){
+        SavAcct sa=new SavAcct("Ariz",101,2000);
+        CurAcct ca=new CurAcct("Sejil",102,1000);
+        System.out.println("Savings account:");
+        sa.deposit(500);
+        sa.getInterest();;
+        sa.withdraw(200);
+        sa.displayBalance();
+        System.out.println("\nCurrent account:");
+        ca.deposit(200);
+        ca.withdraw(800);
+        ca.displayBalance();
+    }
+}
+
+o/p
+
+Savings account:
+Deposited:500.0
+Interest added:100.0
+Withdrawn:200.0
+Current Balance:2400.0
+
+Current account:
+Deposited:200.0
+Amount withdrawn:800.0
+Service charge imposed:50.0
+Current Balance:350.0
