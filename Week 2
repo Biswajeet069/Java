@@ -1,0 +1,178 @@
+import java.util.*;
+
+class Stud_details {
+    int marks[] = new int[8];
+    int credit[] = new int[8];
+    String usn, name;
+    Scanner sc = new Scanner(System.in);
+
+    void getdetails() {
+        System.out.println("Enter the usn and name:");
+        usn = sc.next();
+        name = sc.next();
+        System.out.println("Enter the marks for 8 subjects:");
+        for (int i = 0; i < 8; i++) {
+            marks[i] = sc.nextInt();
+        }
+        System.out.println("Enter the credits for 8 subjects:");
+        for (int i = 0; i < 8; i++) {
+            credit[i] = sc.nextInt();
+        }
+    }
+
+    void display() {
+        System.out.println("\nStudent Details:");
+        System.out.println("USN: " + usn);
+        System.out.println("Name: " + name);
+        for (int i = 0; i < 8; i++) {
+            System.out.println("Marks of Subject " + (i + 1) + ": " + marks[i]);
+        }
+        System.out.println("SGPA: " + calculateSGPA());
+    }
+
+    double getgradepoint(int mark) {
+        if (mark >= 90) return 10.0;
+        else if (mark >= 80) return 9.0;
+        else if (mark >= 70) return 8.0;
+        else if (mark >= 60) return 7.0;
+        else if (mark >= 50) return 6.0;
+        else if (mark >= 40) return 5.0;
+        else return 0.0;
+    }
+
+    double calculateSGPA() {
+        int totalcredits = 0;
+        double gradepoint = 0;
+        for (int i = 0; i < 8; i++) {
+            totalcredits += credit[i];
+        }
+        for (int i = 0; i < 8; i++) {
+            gradepoint += getgradepoint(marks[i]) * credit[i];
+        }
+        return (gradepoint / totalcredits);
+    }
+}
+
+public class Student {
+    public static void main(String args[]) {
+        Stud_details s1[] = new Stud_details[3];
+        for (int j = 0; j < 3; j++) {
+            s1[j] = new Stud_details();
+        }
+        for (int j = 0; j < 3; j++) {
+            System.out.println("\nEnter details of student " + (j + 1));
+            s1[j].getdetails();
+        }
+        for (int j = 0; j < 3; j++) {
+            s1[j].display();
+        }
+        
+    }
+}
+
+o/p
+
+Enter details of student 1
+Enter the usn and name:
+1BM23CS001 
+John
+Enter the marks for 8 subjects:
+90 
+80
+70
+60
+50
+40
+30 
+20
+Enter the credits for 8 subjects:
+4
+3
+3
+3
+2
+3
+2
+3
+Enter details of student 2
+Enter the usn and name:
+1BM23CS002
+Alice
+Enter the marks for 8 subjects:
+80 
+85 
+75
+65
+55
+45
+35
+25
+Enter the credits for 8 subjects:
+4 
+3
+3
+3
+2 
+3
+2 
+3
+Enter details of student 3
+Enter the usn and name:
+1BM23CS003 
+Bob
+Enter the marks for 8 subjects:
+85 
+90
+95
+80
+70
+60
+50
+40
+Enter the credits for 8 subjects:
+4 
+3
+3
+3
+2
+3
+2
+3
+Student Details:
+USN: 1BM23CS001
+Name: John
+Marks of Subject 1: 90
+Marks of Subject 2: 80
+Marks of Subject 3: 70
+Marks of Subject 4: 60
+Marks of Subject 5: 50
+Marks of Subject 6: 40
+Marks of Subject 7: 30
+Marks of Subject 8: 20
+SGPA: 5.555555555555555
+
+Student Details:
+USN: 1BM23CS002
+Name: Alice
+Marks of Subject 1: 80
+Marks of Subject 2: 85
+Marks of Subject 3: 75
+Marks of Subject 4: 65
+Marks of Subject 5: 55
+Marks of Subject 6: 45
+Marks of Subject 7: 35
+Marks of Subject 8: 25
+SGPA: 5.5
+
+Student Details:
+USN: 1BM23CS003
+Name: Bob
+Marks of Subject 1: 85
+Marks of Subject 2: 90
+Marks of Subject 3: 95
+Marks of Subject 4: 80
+Marks of Subject 5: 70
+Marks of Subject 6: 60
+Marks of Subject 7: 50
+Marks of Subject 8: 40
+SGPA: 7.722222222222222
